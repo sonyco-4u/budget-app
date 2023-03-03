@@ -1,28 +1,17 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
+<%= form_for(resource, as: resource_name, data: {turbo: false}, url: registration_path(resource_name)) do |f| %>
+  <div class="menu_bar">
+    <%= render partial: 'shared/home', locals: { title: 'REGISTER', back_path: root_path } %>
+    <%= f.submit "Next" %>
+  </div>    
+  <div class="sign_form">
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Your Name" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+    <% @minimum_password_length %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+    <%= render "devise/shared/error_messages", resource: resource %>
   </div>
 <% end %>
 

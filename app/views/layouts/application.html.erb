@@ -11,8 +11,9 @@
   </head>
 
   <body>
-    <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+     <div class="app-container">
+      <%= render partial: "shared/flash" %>
+      <%= yield %>
+    </div>
   </body>
 </html>
