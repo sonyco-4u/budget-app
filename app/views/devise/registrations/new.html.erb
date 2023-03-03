@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, data: {turbo: false}, url: registration_path(resource_name)) do |f| %>
   <div class="menu_bar">
-    <%= render partial: 'shared/home', locals: { title: 'REGISTER', back_path: root_path } %>
-    <%= f.submit "Next" %>
+    <%= render partial: 'shared/home', locals: { title: 'SIGN UP', back_path: root_path } %>
+    <%= f.submit "Sign up" %>
   </div>    
   <div class="sign_form">
     <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Your Name" %>
