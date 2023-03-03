@@ -1,0 +1,16 @@
+<div class="menu_bar">
+  <%= render partial: 'shared/menu', locals: { title: 'CATEGORIES', menu_path: root_path } %>
+</div>
+
+<section class="categories_page">
+  <% @categories.each do |category| %>
+  <% if category.icon.attached?%>
+    <%= image_tag(category.icon) %>
+  <%else%>
+    <%= image_tag('group-money.svg') %>
+  <%end%>
+    <%= category.name %>
+<% end %>
+</section>
+
+<%= link_to 'Add new category', new_category_path %>

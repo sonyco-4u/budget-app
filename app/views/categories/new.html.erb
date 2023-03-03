@@ -1,0 +1,5 @@
+<%= form_with model: @category, url: categories_path, local: true do |f| %>
+  <%= f.text_field :name, autofocus: true %>
+  <%= f.file_field :icon %>
+  <%= f.submit "Create Category" %>
+<% end %>

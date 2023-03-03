@@ -1,0 +1,7 @@
+<%= form_with model: @category, url: category_path(id: @category.id), local: true do |f| %>
+  <%= f.text_field :name, autofocus: true %>
+  <%= f.file_field :icon %>
+  <%= f.submit "Update Category" %>
+<% end %>
+
+<button> <%= link_to "Back to category", category_path(id: @category.id) %></button>
