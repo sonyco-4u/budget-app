@@ -54,9 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_113304) do
   create_table "category_expenses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "categories_id", null: false
+    t.bigint "category_id", null: false
     t.bigint "expenses_id", null: false
-    t.index ["categories_id"], name: "index_category_expenses_on_categories_id"
+    t.index ["category_id"], name: "index_category_expenses_on_category_id"
     t.index ["expenses_id"], name: "index_category_expenses_on_expenses_id"
   end
 
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_113304) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "users"
-  add_foreign_key "category_expenses", "categories", column: "categories_id"
+  add_foreign_key "category_expenses", "categories"
   add_foreign_key "category_expenses", "expenses", column: "expenses_id"
   add_foreign_key "expenses", "users"
 end
