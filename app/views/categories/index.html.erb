@@ -7,6 +7,7 @@
     <% @categories.each do |category| %>
     <div class="category">
      <div>
+      <a href=<%= category_expenses_path(category_id: category.id) %>>
         <% if category.icon.attached?%>
           <%= image_tag(category.icon) %>
         <%else%>
@@ -29,6 +30,7 @@
         <h3>$ <%= category.expenses.sum(:amount) %></h3>
         <div class="btn_list">
           <button class="list_btn"><%= link_to 'Detail', category_path(id: category.id) %> </button>
+          <button class="list_btn"><%= link_to 'Expense', category_expenses_path(category_id: category.id) %> </button>
         </div>
       </div>
     </div>
