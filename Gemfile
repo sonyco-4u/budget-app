@@ -36,6 +36,8 @@ gem 'devise'
 # cancancan gem for authorization
 gem 'cancancan'
 
+# remove n+1 queries
+gem 'bullet'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[show]
   before_action :find_user
   before_action :find_category
   before_action :find_category_expenses
@@ -43,6 +43,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # rubocop:disable Lint/UselessAssignment
   def destroy
     if can? :edit, @expense
       @category_expenses = CategoryExpense.where(expense_id: @expense.id)
@@ -61,6 +62,7 @@ class ExpensesController < ApplicationController
       redirect_to categories_path
     end
   end
+  # rubocop:enable Lint/UselessAssignment
 
   private
 
@@ -73,7 +75,7 @@ class ExpensesController < ApplicationController
   end
 
   def find_category_expenses
-    @category_expenses = CategoryExpense.where({ category_id: params[:category_id] })
+    @group_expenses = GroupExpense.where({ group_id: params[:group_id] }).order(created_at: :desc)
   end
 
   def expense_params

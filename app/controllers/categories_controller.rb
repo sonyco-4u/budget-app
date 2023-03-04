@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user = @user
     if @category.save
-      redirect_to category_path(id: @category.id), notice: 'Category created successfully'
+      redirect_to categories_path, notice: 'Group created successfully'
     else
       flash.now[:alert] = @category.errors.full_messages.first if @category.errors.any?
       render :new, status: 400
@@ -35,6 +35,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # rubocop:disable Lint/UselessAssignment
   def destroy
     if can? :edit, @category
       @category_expenses = CategoryExpense.where(category_id: @category.id)
@@ -54,6 +55,7 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     end
   end
+  # rubocop:enable Lint/UselessAssignment
 
   private
 
