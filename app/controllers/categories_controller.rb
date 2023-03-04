@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
   before_action :find_user
   before_action :find_category, only: %i[show edit update destroy]
 
@@ -35,18 +36,22 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
-    @category_expenses = CategoryExpense.where(category_id: @category.id)
-    @category_expenses.each do |category_expense|
-      expense_id = category_expense.expense_id
-      category_expense.destroy
-      expense = Expense.delete(expense_id)
-    end
-    if @category.destroy
-      redirect_to categories_path, notice: 'Categories was deleted successfully'
+    if can? :edit, @category
+      @category_expenses = CategoryExpense.where(category_id: @category.id)
+      @category_expenses.each do |category_expense|
+        expense_id = category_expense.expense_id
+        category_expense.destroy
+        expense = Expense.delete(expense_id)
+      end
+      if @category.destroy
+        redirect_to categories_path, notice: 'Category deleted successfully'
+      else
+        flash.now[:alert] = @category.errors.full_messages.first if @category.errors.any?
+        render :index, status: 400
+      end
     else
-      flash.now[:alert] = @category.errors.full_messages.first if @category.errors.any?
-      render :index, status: 400
+      flash[:alert] = 'Un Authorized'
+      redirect_to categories_path
     end
   end
 

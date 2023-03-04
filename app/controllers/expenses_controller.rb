@@ -1,9 +1,12 @@
 class ExpensesController < ApplicationController
+  load_and_authorize_resource
   before_action :find_user
   before_action :find_category
   before_action :find_category_expenses
 
-  def index; end
+  def index
+    authorize! :manage, @category
+  end
 
   def show
     @expense = Expense.find(params[:id])
@@ -41,18 +44,21 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    @expense = Expense.find(params[:id])
-    @category_expenses = CategoryExpense.where(expense_id: @expense.id)
-    @category_expenses.each do |category_expense|
-      expense_id = category_expense.expense_id
-      category_expense.destroy
-    end
-    if @expense.destroy
-      redirect_to category_expenses_path(category_id: @category.id, id: @expense.id),
-                  notice: 'Expense deleted successfully'
+    if can? :edit, @expense
+      @category_expenses = CategoryExpense.where(expense_id: @expense.id)
+      @category_expenses.each do |category_expense|
+        expense_id = category_expense.expense_id
+        category_expense.destroy
+      end
+      if @expense.destroy
+        redirect_to category_expenses_path(category_id: @category.id), notice: 'Expense was deleted successfully'
+      else
+        flash.now[:alert] = @expense.errors.full_messages.first if @expense.errors.any?
+        render :index, status: 400
+      end
     else
-      flash.now[:alert] = @expense.errors.full_messages.first if @expense.errors.any?
-      render :index, status: 400
+      flash[:alert] = 'You are not Authorized'
+      redirect_to categories_path
     end
   end
 

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :expenses, class_name: 'Expense', foreign_key: 'user_id'
 
   validates :name, presence: true
+
+  def admin?
+    role == 'admin'
+  end
 end
