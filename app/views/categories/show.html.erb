@@ -1,10 +1,25 @@
-<% if @category.icon.attached?%>
-    <%= image_tag(@category.icon) %>
-  <%else%>
-    <%= image_tag('group-money.svg') %>
-  <%end%>
-<h1><%= @category.name %></h1>
+<div class="menu_bar">
+  <%= render partial: 'shared/menu', locals: { title: 'CATEGORY DETAIL', menu_path: root_path } %>
+</div>
 
-<%= link_to "Edit this category", edit_category_path(@category) %>
-<%= link_to "Back to categories", categories_path %>
-<%= button_to "Destroy this category", @category, method: :delete %>
+<section class="category_detail_page">
+  
+  <div class="category">
+    <div>
+      <% if @category.icon.attached?%>
+        <%= image_tag(@category.icon) %>
+      <%else%>
+        <%= image_tag('group-money.svg') %>
+      <%end%>
+      <h2><%= @category.name %></h2>
+    </div>
+    <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque iste quidem repudiandae. Dolor debitis quas impedit sit officiis dolorum beatae quaerat nesciunt doloribus expedita.</p>
+    
+    <div class="list_btn_gen">
+      <button class="edit_btn list_btn"><%= link_to "Edit", edit_category_path(@category) %></button>
+      <button class="back_btn list_btn"><%= link_to "Back", categories_path %></button>
+      <%= button_to "Delete", @category, method: :delete, class: 'del_btn list_btn' %>
+    </div>
+  </div>
+
+</section>

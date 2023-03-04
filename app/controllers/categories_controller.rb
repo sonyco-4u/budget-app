@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :find_user
-  before_action :findcategory, only: [:show, :edit, :update, :destroy]
+  before_action :find_category, only: [:show, :edit, :update, :destroy]
 
   def index
     @categories = @user.categories.all
@@ -37,8 +37,15 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @category = Category.find(params[:id])
+    @category_expenses = CategoryExpense.where(category_id: @category.id)
+    @category_expenses.each do |category_expense|
+      expense_id = category_expense.expense_id
+      category_expense.destroy
+      expense = Expense.delete(expense_id)
+    end
     if @category.destroy
-      redirect_to categories_path, notice: 'Category was deleted successfully'
+      redirect_to categories_path, notice: 'Categories was deleted successfully'
     else
       flash.now[:alert] = @category.errors.full_messages.first if @category.errors.any?
       render :index, status: 400
@@ -51,7 +58,7 @@ class CategoriesController < ApplicationController
     @user = current_user
   end
 
-  def findcategory
+  def find_category
     @category = Category.find_by_id(params[:id])
   end
 

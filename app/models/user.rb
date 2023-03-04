@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :categories, class_name: 'Category', foreign_key: 'user_id'
   has_many :expenses, class_name: 'Expense', foreign_key: 'user_id'
 
-  # validates :name, presence: true
+  validates :name, presence: true
 end

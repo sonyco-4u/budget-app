@@ -1,16 +1,38 @@
 <div class="menu_bar">
-  <%= render partial: 'shared/menu', locals: { title: 'CATEGORIES', menu_path: root_path } %>
+  <%= render partial: 'shared/menu', locals: { title: 'Categories', menu_path: root_path } %>
 </div>
 
 <section class="categories_page">
-  <% @categories.each do |category| %>
-  <% if category.icon.attached?%>
-    <%= image_tag(category.icon) %>
-  <%else%>
-    <%= image_tag('group-money.svg') %>
-  <%end%>
-    <%= category.name %>
-<% end %>
-</section>
+  <div>
+    <% @categories.each do |category| %>
+    <div class="category">
+     <div>
+        <% if category.icon.attached?%>
+          <%= image_tag(category.icon) %>
+        <%else%>
+          <%= image_tag('group-money.svg') %>
+        <%end%>
 
-<%= link_to 'Add new category', new_category_path %>
+        <div>
+          <h2><%= category.name %></h2>
+          <% if Time.now - category.created_at <= 1.minute %>
+            <p><%= time_ago_in_words(category.created_at, include_seconds: true) %> ago</p>
+          <% elsif Time.now - category.created_at <= 24.hours %>
+            <p><%= time_ago_in_words(category.created_at) %> ago</p>
+          <% else %>
+            <p><%= category.created_at.strftime('%b %d, %Y') %></p>
+          <% end %>
+        </div>
+        </a>
+     </div>
+      <div class="list_gen">
+        <h3>$ <%= category.expenses.sum(:amount) %></h3>
+        <div class="btn_list">
+          <button class="list_btn"><%= link_to 'Detail', category_path(id: category.id) %> </button>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <button class="add_btn"><%= link_to 'Add new category', new_category_path %> </button>
+</section>
