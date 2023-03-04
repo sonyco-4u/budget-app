@@ -1,10 +1,10 @@
 @import url('https://fonts.cdnfonts.com/css/proxima-nova-2');
 
 :root {
-  --brown: #A84448;
+  --brown: #a84448;
   --blue: #3778c2;
-  --green: #68B984;
-  --orange: #EF9A53;
+  --green: #68b984;
+  --orange: #ef9a53;
   --white: #fff;
   --grey: #f1f3f2;
   --grey2: #e8eae9;
@@ -67,6 +67,20 @@ input::placeholder {
   text-align: center;
   color: var(--brown);
   font-size: 1rem;
+}
+
+.menu_bar h2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.category h2 {
+  color: #858a91db;
+  font-size: 1.2rem;
+}
+
+.category_detail_page h2 {
+  font-size: 1.4rem;
 }
 
 #error_explanation h2 {
@@ -167,6 +181,17 @@ input::placeholder {
   color: var(--dark);
 }
 
+.list_btn a {
+  color: var(--grey2);
+}
+
+.category > div,
+.category > div > a {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
 .home_links a:hover {
   box-shadow: 3px 3px 4px 1px #0e0e0e82;
   transform: scale(1);
@@ -195,11 +220,6 @@ input::placeholder {
 .home {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.menu_bar h2 {
-  font-size: 1rem;
-  font-weight: normal;
 }
 
 .menu_bar input {
@@ -241,25 +261,19 @@ input::placeholder {
   box-shadow: 2px 2px 3px var(--grey3), -1px 0 3px var(--grey3);
 }
 
-.category > div,
-.category > div > a {
-  display: flex;
-  gap: 0.4rem;
-  align-items: center;
+.category_header > div {
+  width: 100%;
+  justify-content: space-between;
 }
 
 .category > div:last-child {
   align-self: flex-end;
 }
+
 .category p {
   font-size: 0.8rem;
   font-style: italic;
   color: var(--grey3);
-}
-
-.category h2 {
-  color: #858a91db;
-  font-size: 1.2rem;
 }
 
 .add_btn {
@@ -302,10 +316,6 @@ input::placeholder {
   border-radius: 3px;
 }
 
-.list_btn a {
-  color: var(--grey2);
-}
-
 .list_btn:hover {
   box-shadow: 3px 3px 3px var(--dark);
 }
@@ -319,10 +329,6 @@ input::placeholder {
   padding: 1.5rem;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.category_detail_page h2 {
-  font-size: 1.4rem;
 }
 
 .list_btn_gen button {
@@ -388,11 +394,6 @@ form input[type="file"]::-webkit-file-upload-button {
 
 .scroll {
   overflow: scroll;
-}
-
-.category_header > div {
-  width: 100%;
-  justify-content: space-between;
 }
 
 .header_name {
