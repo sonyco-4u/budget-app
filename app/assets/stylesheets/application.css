@@ -277,6 +277,21 @@ input::placeholder {
   box-shadow: 3px 3px 3px var(--dark);
 }
 
+.list_gen {
+  flex-direction: column;
+}
+
+.list_gen h3 {
+  align-self: flex-end;
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.btn_list {
+  display: flex;
+  gap: 0.3rem;
+}
+
 .list_btn {
   align-self: flex-end;
   font-size: 0.7rem;
@@ -323,17 +338,20 @@ input::placeholder {
   background: var(--brown);
 }
 
-.edit_category_page {
+.edit_add_page {
   display: flex;
   flex-direction: column;
   padding: 1em 0;
 }
 
-.edit_category_page form {
+.edit_add_page form {
   padding: 1.3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.edit_category_page form input[type="text"] {
+.edit_add_page form input[type="text"] {
   width: 100%;
   border: none;
   background: var(--grey2);
@@ -360,4 +378,38 @@ form input[type="file"]::-webkit-file-upload-button {
   justify-content: flex-end;
   padding-top: 1rem;
   border-top: 0.7px solid var(--grey2);
+}
+
+.expenses_page .category_header {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.2rem 1rem;
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+.category_header > div {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.header_name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edit_add_page form input[type="text"],
+.edit_add_page form input[type="number"] {
+  margin: 0.5rem 0;
+}
+
+.expense {
+  color: #828991d2;
+  font-size: 0.9rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
