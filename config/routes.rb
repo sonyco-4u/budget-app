@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :home, only: [:index]
-  resources :categories do
-    resources :excategories
-  end
+  resources :categories
   
   # root "articles#index"
   root 'home#index'

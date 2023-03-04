@@ -1,0 +1,38 @@
+<div class="menu_bar">
+  <%= render partial: 'shared/menu', locals: { title: 'Expenses', menu_path: root_path } %>
+</div>
+
+<section class="expenses_page">
+  <div class="category">
+    <div>
+      <% if @category.icon.attached?%>
+        <%= image_tag(@category.icon) %>
+      <%else%>
+        <%= image_tag('group-money.svg') %>
+      <%end%>
+      <h2><%= @category.name %></h2>
+    </div>
+    <p>The <%= @category.name %> category has following <%= @category_expenses.count %> transactions </p>
+  </div>
+
+  <% @category_expenses.each_with_index do |category_expense, index| %>
+    <div class="category">
+      <p><%= "#{index + 1})" %></p>
+      <% if category_expense.expense.icon.attached?%>
+        <%= image_tag(category_expense.expense.icon) %>
+      <%else%>
+        <%= image_tag('expense.png') %>
+      <%end%>
+      <%= category_expense.expense.name %>
+      <% if Time.now - category_expense.created_at <= 1.minute %>
+        <p><%= time_ago_in_words(category_expense.created_at, include_seconds: true) %> ago</p>
+      <% elsif Time.now - category_expense.created_at <= 24.hours %>
+        <p><%= time_ago_in_words(category_expense.created_at) %> ago</p>
+      <% else %>
+        <p><%= category_expense.created_at.strftime('%b %d, %Y') %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to 'Add new category', new_category_expense_path(category_id: @category.id) %>
+
+</section>
