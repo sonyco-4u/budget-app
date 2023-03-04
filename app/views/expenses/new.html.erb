@@ -1,0 +1,7 @@
+<%= form_with model: @expense, url: category_expenses_path(group_id: @category.id), local: true do |f| %>
+  <%= f.text_field :name, autofocus: true %>
+  <%= f.number_field :amount %>
+  <%= f.file_field :icon %>
+  <%= f.submit "Create Expense" %>
+<% end %>
+<%= link_to "Back to expenses", category_expenses_path(group_id: @category.id) %>
