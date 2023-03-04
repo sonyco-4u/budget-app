@@ -3,8 +3,7 @@ class ExpensesController < ApplicationController
   before_action :find_category
   before_action :find_category_expenses
 
-  def index
-  end
+  def index; end
 
   def show
     @expense = Expense.find(params[:id])
@@ -33,7 +32,8 @@ class ExpensesController < ApplicationController
   def update
     @expense = Expense.find(params[:id])
     if @expense.update(expense_params)
-      redirect_to category_expense_path(category_id: @category.id, id: @expense.id), notice: 'Expense updated successfully'
+      redirect_to category_expense_path(category_id: @category.id, id: @expense.id),
+                  notice: 'Expense updated successfully'
     else
       flash.now[:alert] = @expense.errors.full_messages.first if @expense.errors.any?
       render :edit, status: 400
@@ -48,7 +48,8 @@ class ExpensesController < ApplicationController
       category_expense.destroy
     end
     if @expense.destroy
-      redirect_to category_expenses_path(category_id: @category.id, id: @expense.id), notice: 'Expense deleted successfully'
+      redirect_to category_expenses_path(category_id: @category.id, id: @expense.id),
+                  notice: 'Expense deleted successfully'
     else
       flash.now[:alert] = @expense.errors.full_messages.first if @expense.errors.any?
       render :index, status: 400
@@ -66,7 +67,7 @@ class ExpensesController < ApplicationController
   end
 
   def find_category_expenses
-    @category_expenses = CategoryExpense.where({category_id: params[:category_id]})
+    @category_expenses = CategoryExpense.where({ category_id: params[:category_id] })
   end
 
   def expense_params

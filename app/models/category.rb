@@ -4,6 +4,6 @@ class Category < ApplicationRecord
   has_many :expenses, through: :category_expenses
 
   has_one_attached :icon
-  
+
   validates :name, presence: true
 end

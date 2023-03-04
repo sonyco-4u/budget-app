@@ -1,13 +1,12 @@
 class CategoriesController < ApplicationController
   before_action :find_user
-  before_action :find_category, only: [:show, :edit, :update, :destroy]
+  before_action :find_category, only: %i[show edit update destroy]
 
   def index
     @categories = @user.categories.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @category = Category.new
@@ -24,8 +23,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
