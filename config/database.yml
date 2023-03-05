@@ -25,7 +25,7 @@ development:
   <<: *default
   database: bg_app_dev
   username: postgres
-  password: admin
+  password: sunday_4U
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +61,7 @@ test:
   <<: *default
   database: bg_app_test
   username: postgres
-  password: admin
+  password: sunday_4U
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
