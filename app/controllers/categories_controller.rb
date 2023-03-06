@@ -1,18 +1,22 @@
+# CategoriesController class that handles the management of categories for a user
 class CategoriesController < ApplicationController
   load_and_authorize_resource
   before_action :find_user
   before_action :find_category, only: %i[show edit update destroy]
 
+   # index action that lists all the categories for the current user
   def index
     @categories = @user.categories.all
   end
 
   def show; end
 
+  # new action that creates a new category
   def new
     @category = Category.new
   end
 
+  # create action that saves a new category to the database
   def create
     @category = Category.new(category_params)
     @category.user = @user
@@ -26,6 +30,7 @@ class CategoriesController < ApplicationController
 
   def edit; end
 
+  # update action that updates an existing category
   def update
     if @category.update(category_params)
       redirect_to category_path(id: @category.id), notice: 'Category updated successfully'

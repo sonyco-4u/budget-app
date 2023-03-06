@@ -37,6 +37,7 @@ textarea {
   font-family: var(--principalFont);
 }
 
+/* Sets the style properties for the body element */
 body {
   font-family: var(--principalFont);
   color: var(--black);
@@ -131,6 +132,8 @@ input::placeholder {
   letter-spacing: 1px;
 }
 
+/* The "home_container" class is using CSS Grid layout to create a two-row grid, with the first row taking up all available space (1fr)
+and the second row taking up no space (0fr). */
 .home_container {
   display: grid;
   grid-template-rows: 1fr 0fr;
@@ -276,6 +279,8 @@ input::placeholder {
   color: var(--grey3);
 }
 
+/* The "add_btn" class is used to style a button with a green background color, no border,
+a height of 50 pixels, and a width of 94% of the viewport width. */
 .add_btn {
   background: var(--green);
   border: none;
@@ -357,6 +362,7 @@ input::placeholder {
   width: 100%;
 }
 
+/* This is a CSS selector targeting an input element of type "text" within a form element with a class of "edit_add_page. */
 .edit_add_page form input[type="text"] {
   width: 100%;
   border: none;
