@@ -1,0 +1,15 @@
+<div class="menu_bar">
+  <%= render partial: 'shared/menu', locals: { title: 'ADD EXPENSE', menu_path: root_path } %>
+</div>
+
+<section class="edit_add_page category">
+  <%= form_with model: @expense, url: category_expenses_path(category_id: @category.id), local: true do |f| %>
+    <%= f.text_field :name, autofocus: true, placeholder: "Expense name"  %>
+    <%= f.number_field :amount, placeholder: "Expense amount"  %>
+    <%= f.file_field :icon %>
+    <div class="form_btn">
+      <%= f.submit "Create Expense", class: 'list_btn' %>
+      <button class="list_btn"><%= link_to "Back", category_expenses_path(category_id: @category.id) %></button>
+    </div>
+  <% end %>
+</section>
