@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :find_user
   before_action :find_category, only: %i[show edit update destroy]
 
-   # index action that lists all the categories for the current user
+  # index action that lists all the categories for the current user
   def index
     @categories = @user.categories.all
   end
