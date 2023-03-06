@@ -4,18 +4,22 @@ class ExpensesController < ApplicationController
   before_action :find_category
   before_action :find_category_expenses
 
+  # displays all expenses in the category
   def index
     authorize! :manage, @category
   end
 
+  # displays a specific expense
   def show
     @expense = Expense.find(params[:id])
   end
 
+  # creates a new expense
   def new
     @expense = Expense.new
   end
 
+  # saves a new expense to the database
   def create
     @expense = Expense.new(expense_params)
     @expense.user = @user
@@ -32,6 +36,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
   end
 
+  # updates an existing expense in the database
   def update
     @expense = Expense.find(params[:id])
     if @expense.update(expense_params)
